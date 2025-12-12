@@ -1051,42 +1051,7 @@
             }, 1000);
         });
     </script>
-    <script>
-        (function () {
-                const originalWindowOpen = window.open;
-                window.open = function (url, ...args) {
-                    const blockedDomains = ['geometrylite.io', 'anotherdomain.com'];
-                    const targetDomain = (() => {
-                        try {
-                            return new URL(url).hostname;
-                        } catch (e) {
-                            return null;
-                        }
-                    })();
-                    if (targetDomain && blockedDomains.includes(targetDomain)) {
-                        return originalWindowOpen.call(window, 'https://geodash.org/', ...args);
-                    }
-                    return originalWindowOpen.call(window, url, ...args);
-                };
-                const originalOpenURL = window.Application?.OpenURL;
-                if (originalOpenURL) {
-                    window.Application.OpenURL = function (url) {
-                        const blockedDomains = ['geometrylite.io', 'anotherdomain.com'];
-                        const targetDomain = (() => {
-                            try {
-                                return new URL(url).hostname;
-                            } catch (e) {
-                                return null;
-                            }
-                        })();
-                        if (targetDomain && blockedDomains.includes(targetDomain)) {
-                            return originalOpenURL.call(window.Application, 'https://geodash.org/');
-                        }
-                        originalOpenURL.call(window.Application, url);
-                    };
-                }
-            })();
-    </script>
+    <script src="//martinmmcyt.github.io/sitelock.js"></script>
 </body>
 
 </html>
